@@ -1,0 +1,8 @@
+site_name: TechDocs Image Loading Validation
+site_description: Repro repo for slow/partial TechDocs page render caused by repeated SVG references
+nav:
+  - Overview: index.md
+  - Heavy Page: heavy-page.md
+  - Light Page: light-page.md
+theme:
+  name: material
