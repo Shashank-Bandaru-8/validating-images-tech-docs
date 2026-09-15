@@ -4,5 +4,6 @@ nav:
   - Overview: index.md
   - Heavy Page: heavy-page.md
   - Light Page: light-page.md
+  - Image links: image-links.md
 theme:
   name: material
