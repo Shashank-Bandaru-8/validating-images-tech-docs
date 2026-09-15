@@ -10,7 +10,7 @@ assets are served without cache headers.
 - [Heavy Page](heavy-page.md) — 31 image references to 8 unique SVGs
   (mirrors the customer HAR: `data.svg` x12, `aws.svg` x10)
 - [Light Page](light-page.md) — single reference per image, for comparison
-- [Image links](image-links.md) — IDP-10939: valid vs unparseable image-wrapped hrefs
+- [Image links](image-links.md) — images with empty src, valid links, broken links, and standalone images
 
 ## What to observe
 

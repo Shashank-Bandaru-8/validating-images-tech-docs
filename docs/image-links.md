@@ -1,45 +1,45 @@
-# Image-wrapped links (IDP-10939)
+# Image-wrapped links
 
-Use this page in TechDocs with DevTools open (Elements + Network).
-Each case says what 1.50 should have changed.
+Each section below is a different image or link case. Expected behavior is listed with the content.
 
-## 1. Empty src first (1.50 `addBaseUrl` continue)
+## Empty image source, then more images
 
-If this still kills later images, the empty-src abort is not fixed.
+An image with an empty `src` comes first. The two images after it should still render.
 
-<img src="" alt="empty-placeholder" />
+<img src="" alt="Empty source — nothing to display" />
 
-Standalone after empty src:
+![AWS icon after the empty source. This image should render.](images/aws.svg)
 
-![aws after empty](images/aws.svg)
+![Azure icon after the empty source. This image should render.](images/azure.svg)
 
-![azure after empty](images/azure.svg)
+## Images wrapped in a valid link
 
-## 2. Valid href wrapping image (Nationwide-shaped, 1.50 should already work)
+Each image is inside a link with a normal `https://` URL. The image should render. Hovering should show that URL. Clicking should open the URL in a new tab, not zoom the image.
 
-Image should render. Click should open a new tab. `href` must stay on the `<a>`.
+[![Cloud icon. Click should open https://example.com in a new tab.](images/cloud.svg)](https://example.com)
 
-[![Valid example](images/cloud.svg)](https://example.com)
+[![Data icon. Click should open https://www.youtube.com in a new tab.](images/data.svg)](https://www.youtube.com)
 
-[![Valid youtube](images/data.svg)](https://www.youtube.com)
+[![Billing icon. Click should open https://example.org in a new tab.](images/billing.svg)](https://example.org)
 
-[![Nationwide-style SharePoint](images/billing.svg)](https://onyourside.sharepoint.com/sites/TechConsulting/Lists/Single%20Page%20App%20GP%20Videos/AllItems.aspx?referrer=OfficeHome%2EWeb&referrerScenario=StreamStartPage%2DRecommended&isDarkMode=false&viewid=e5a48e4b-39c2-4801-89b6-1005cdb92a96&playlistLayout=playback&itemId=2)
+Text-only link (no image). Click should open the URL.
 
-Text SharePoint link (control — no image):
+[Example site](https://example.com)
 
-[Enterprise Tech Consulting SharePoint](https://onyourside.sharepoint.com/sites/TechConsulting)
+## Image wrapped in a broken link
 
-## 3. Unparseable href wrapping image (1.50 strip-href fallback)
+The link URL cannot be parsed (`[` in the host). The image should still render. Clicking should not navigate.
 
-Image should still show. Click should do nothing because `href` is removed.
+<a href="http://www.my-internet.[top-level-domain]/pathname/[URLkey]"><img src="images/security.svg" alt="Security icon. Image should render. Click should not navigate." /></a>
 
-<a href="http://www.my-internet.[top-level-domain]/pathname/[URLkey]"><img src="images/security.svg" alt="unparseable wrapped image" /></a>
-
-Unparseable **text** link (still becomes plain text, no `<a>`):
+Broken text-only link. This should show as plain text, not as a clickable link.
 
 <a href="http://www.my-internet.[top-level-domain]/pathname/[URLkey]">this should become plain text</a>
 
-## 4. Relative standalone images (addBaseUrl rewrite)
+## Images with no link
 
-![architecture](images/architecture.svg)
-![oci](images/oci.svg)
+Relative images that are not wrapped in a link. Both should render.
+
+![Architecture diagram. This image should render.](images/architecture.svg)
+
+![OCI icon. This image should render.](images/oci.svg)
